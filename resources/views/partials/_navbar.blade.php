@@ -13,8 +13,8 @@
                             class="visually-hidden">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'books' ? 'active' : '' }}"
-                        href="{{ route('books') }}">Books</a>
+                    <a class="nav-link {{ Route::currentRouteName() == 'books.index' ? 'active' : '' }}"
+                        href="{{ route('books.index') }}">Books</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
