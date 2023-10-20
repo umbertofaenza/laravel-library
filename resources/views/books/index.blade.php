@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
+
 @section('main-content')
     <section class="container mt-5">
         <h1 class="text-light">{{ $title }}</h1>
-
+        <a href="{{ route('books.create') }}" class="btn btn-outline-success my-4">Add new book</a>
         <div class="row row-cols-2 g-3">
 
             @forelse($books as $book)
@@ -14,6 +15,13 @@
                                 <li>Title: {{ $book->title }}</li>
                                 <li>Author: {{ $book->author }}</li>
                                 <li>{{ $book->lent ? 'Not Available' : 'Available' }}</li>
+                                <li>
+                                    <a href="{{ route('books.show', $book) }}" class="btn btn-outline-success">More details</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('books.edit', $book) }}" class="btn btn-outline-warning">Edit</a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
