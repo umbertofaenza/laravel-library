@@ -18,6 +18,10 @@
                                 <li>
                                     <a href="{{ route('books.show', $book) }}" class="btn btn-outline-success">More details</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('books.edit', $book) }}" class="btn btn-outline-warning">Edit</a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
