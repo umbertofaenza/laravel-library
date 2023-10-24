@@ -4,6 +4,16 @@
     <div class="container">
         <h1 class="my-4 text-light">Add book</h1>
         <a href="{{ route('admin.books.index') }}" class="btn btn-outline-success">Back to list</a>
+        @if($errors->any())
+        <div class="alert alert-danger">
+            <h3>Correggi i seguenti errori:</h3>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <form action="{{ route('admin.books.store') }}" method="POST" class="row g-4">
         @csrf
         <div class="col-3">

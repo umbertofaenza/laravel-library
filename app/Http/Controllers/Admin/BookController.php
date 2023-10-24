@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Validator;
+
 class BookController extends Controller
 {
     /**
@@ -41,7 +43,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $this->validation($request->all());
+        $this->validation($data);
         $book = new Book();
         $book->fill($data);
         $book->save();
@@ -79,7 +82,8 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $data = $request->all();
+        $data = $this->validation($request->all());
+        $this->validation($data);
         $book->update($data);
         return redirect()->route('admin.books.show', $book);
     }
@@ -94,5 +98,62 @@ class BookController extends Controller
     {
         $book->delete();
         return redirect()->route('admin.books.index');
+    }
+    private function validation($data, $id = null){
+
+        $validator = Validator::make(
+            $data,
+            [
+                'title'=> 'required|string|max:70',
+                'author'=> 'required|string|max:50',
+                'isbn'=> 'required|string|max:15',
+                'editor'=> 'required|string|max:30',
+                'published_in' => 'required',
+                'pages_num' => 'required|integer',
+                'lent' => 'required',
+                'lending_start' => 'required',
+                'lending_end' => 'required',
+                'cover'=> 'required|string',
+                'quantity' => 'required|integer',
+                'status' => 'required'
+            ],
+            [
+                'title.required'=> 'Il titolo è obbligatorio',
+                'title.string'=> 'Il titolo deve essere una stringa',
+                'title.max'=> 'Il titolo deve essere massimo di 70 caratteri',
+
+                'author.required'=> 'Il campo autore è obbligatorio',
+                'author.string'=> 'Il campo autore deve essere una stringa',
+                'author.max'=> 'Il campo autore deve essere massimo di 50 caratteri',
+
+                'isbn.required'=> 'Il campo isbn è obbligatorio',
+                'isbn.string'=> 'Il campo isbn deve essere una stringa',
+                'isbn.max'=> 'Il campo isbn deve essere massimo di 15 caratteri',
+
+                'editor.required'=> 'Il campo editore è obbligatorio',
+                'editor.string'=> 'Il campo editore deve essere una stringa',
+                'editor.max'=> 'Il campo editore deve essere massimo di 30 caratteri',
+
+                'published_in.required'=> 'Il campo pubblicazione è obbligatorio',
+
+                'pages_num.required'=> 'Il Numero di pagine è obbligatorio',
+                'pages_num.integer'=> 'Il Numero di pagine deve essere un intero',
+
+                'lent.required'=> 'Il campo prestato è obbligatorio',
+
+                'lending_start.required'=> 'Il campo inizio prestito è obbligatorio',
+
+                'lending_end.required'=> 'Il campo fine prestito è obbligatorio',
+
+                'cover.required'=> 'La cover è obbligatoria',
+                'cover.string'=> 'La cover deve essere una stringa',
+
+                'quantity.required'=> 'La quantità è obbligatoria',
+                'quantity.integer'=> 'La quantità deve essere un intero',
+
+                'status.required'=> 'Il campo status è obbligatorio'
+            ]
+        )->validate();
+        return $validator;
     }
 }
