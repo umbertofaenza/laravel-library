@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('main-content')
+@section('content')
     <div class="container">
         <h1 class="my-4 text-light">Add book</h1>
-        <a href="{{ route('books.index') }}" class="btn btn-outline-success">Back to list</a>
-        <form action="{{ route('books.store') }}" method="POST" class="row g-4">
+        <a href="{{ route('admin.books.index') }}" class="btn btn-outline-success">Back to list</a>
+        <form action="{{ route('admin.books.store') }}" method="POST" class="row g-4">
         @csrf
         <div class="col-3">
             <label for="title" class="form-label">Title</label>
