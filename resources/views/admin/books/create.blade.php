@@ -3,7 +3,9 @@
 @section('content')
     <div class="container">
         <h1 class="my-4 text-light">Add book</h1>
+        <hr>
         <a href="{{ route('admin.books.index') }}" class="btn btn-outline-success">Back to list</a>
+        <hr>
         @if($errors->any())
         <div class="alert alert-danger">
             <h3>Correggi i seguenti errori:</h3>

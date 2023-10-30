@@ -4,7 +4,9 @@
 @section('content')
     <section class="container mt-5">
         <h1 class="text-light">{{ $title }}</h1>
-        <a href="{{ route('admin.books.create') }}" class="btn btn-outline-success my-4">Add new book</a>
+        <hr>
+        <a href="{{ route('admin.books.create') }}" class="btn btn-outline-success my-1">Add new book</a>
+        <hr>
         <div class="row row-cols-2 g-3">
 
             @forelse($books as $book)
@@ -19,11 +21,11 @@
                                   
                                   <span class="badge" style="background-color:{{ $book->genre?->color }}">{{ $book->genre?->label }} </span></h1>
                                 </li>
-                                <a href="{{ route('admin.books.show', $book) }}" class="p-0 px-1 btn btn-outline-success">More details</a>
+                                <a href="{{ route('admin.books.show', $book) }}" class="p-0 my-2 px-1 btn btn-outline-success">More details</a>
                              
-                                <a href="{{ route('admin.books.edit', $book) }}" class="p-0 px-1 btn btn-outline-warning">Edit</a>
+                                <a href="{{ route('admin.books.edit', $book) }}" class="p-0 my-2 px-1 btn btn-outline-warning">Edit</a>
                               
-                                <a data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $book->id }}" class="p-0 px-1 btn btn-outline-danger">Delete</a>
+                                <a data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $book->id }}" class="p-0 my-2 px-1 btn btn-outline-danger">Delete</a>
                             
                                 
                             </ul>

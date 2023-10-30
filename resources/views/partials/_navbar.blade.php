@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark bg-gradient">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">Navbar</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
@@ -24,6 +24,10 @@
             </li>
           @endif
         @else
+          <li class="nav-item">
+            <a class="nav-link {{ Route::currentRouteName() == 'admin.books.index' ? 'active' : '' }}"
+              href="{{ route('admin.books.index') }}" aria-current="page">Libri<span class="visually-hidden">(current)</span></a>
+          </li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -44,10 +48,7 @@
               </form>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {{ Route::currentRouteName() == 'admin.books.index' ? 'active' : '' }}"
-              href="{{ route('admin.books.index') }}" aria-current="page">Libri<span class="visually-hidden">(current)</span></a>
-          </li>
+
         @endguest
         
             </ul>
