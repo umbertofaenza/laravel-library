@@ -19,7 +19,6 @@ class BookController extends Controller
     public function index()
     {
 
-
         $title = "Books";
         $books = Book::all();
         return view('admin.books.index', compact('title', 'books'));
@@ -72,7 +71,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('admin.books.edit', compact('book'));
+        $genres = Genre::all();
+        return view('admin.books.edit', compact('book','genres'));
     }
 
     /**
@@ -120,6 +120,7 @@ class BookController extends Controller
                 'status' => 'required',
 
                 'genre_id' => 'nullable|exists:genres,id'
+
             ],
             [
                 'title.required'=> 'Il titolo è obbligatorio',
@@ -157,7 +158,7 @@ class BookController extends Controller
 
                 'status.required'=> 'Il campo status è obbligatorio',
 
-                'genre_id.exists' => 'La categoria inserita non è valida'
+                'genre_id.exists' => 'Il Genere inserito non è valido'
             ]
         )->validate();
         return $validator;
