@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="my-4 text-light">Edit book</h1>
+        <h1 class="my-4 text-light">Edit book: ( id : <span class="text-primary">{{$book->id}}</span> )"{{$book->title}}"</h1>
 
         <hr>
         <a href="{{ route('admin.books.index') }}" class="btn btn-outline-success">Back to list</a>
