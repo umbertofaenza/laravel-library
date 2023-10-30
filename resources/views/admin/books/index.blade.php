@@ -16,16 +16,15 @@
                                 <li>Author: {{ $book->author }}</li>
                                 <li>{{ $book->lent ? 'Not Available' : 'Available' }}</li>
                                 <li>
-                                    <a href="{{ route('admin.books.show', $book) }}" class="btn btn-outline-success">More details</a>
+                                  
+                                  <span class="badge" style="background-color:{{ $book->genre?->color }}">{{ $book->genre?->label }} </span></h1>
                                 </li>
-                                <li>
-                                    <a href="{{ route('admin.books.edit', $book) }}" class="btn btn-outline-warning">Edit</a>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $book->id }}" class="btn btn-outline-danger">
-                                        Delete
-                                    </a>
-                                </li>
+                                <a href="{{ route('admin.books.show', $book) }}" class="p-0 px-1 btn btn-outline-success">More details</a>
+                             
+                                <a href="{{ route('admin.books.edit', $book) }}" class="p-0 px-1 btn btn-outline-warning">Edit</a>
+                              
+                                <a data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $book->id }}" class="p-0 px-1 btn btn-outline-danger">Delete</a>
+                            
                                 
                             </ul>
                         </div>
