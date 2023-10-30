@@ -20,5 +20,12 @@ class Book extends Model
     'lending_end',
     'cover',
     'quantity',
-    'status'];
+    'status',
+    'genre_id',
+    ];
+
+    public function genre() {
+        return $this->belongsTo(Genre::class);
+      }
+
 }

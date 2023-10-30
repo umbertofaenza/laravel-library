@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,6 @@ class BookController extends Controller
     public function index()
     {
 
-
         $title = "Books";
         $books = Book::all();
         return view('admin.books.index', compact('title', 'books'));
@@ -32,7 +32,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('admin.books.create');
+        $genres = Genre::all();
+        return view('admin.books.create', compact('genres'));
     }
 
     /**
@@ -70,7 +71,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('admin.books.edit', compact('book'));
+        $genres = Genre::all();
+        return view('admin.books.edit', compact('book','genres'));
     }
 
     /**
@@ -115,7 +117,10 @@ class BookController extends Controller
                 'lending_end' => 'required',
                 'cover'=> 'required|string',
                 'quantity' => 'required|integer',
-                'status' => 'required'
+                'status' => 'required',
+
+                'genre_id' => 'nullable|exists:genres,id'
+
             ],
             [
                 'title.required'=> 'Il titolo è obbligatorio',
@@ -151,7 +156,9 @@ class BookController extends Controller
                 'quantity.required'=> 'La quantità è obbligatoria',
                 'quantity.integer'=> 'La quantità deve essere un intero',
 
-                'status.required'=> 'Il campo status è obbligatorio'
+                'status.required'=> 'Il campo status è obbligatorio',
+
+                'genre_id.exists' => 'Il Genere inserito non è valido'
             ]
         )->validate();
         return $validator;

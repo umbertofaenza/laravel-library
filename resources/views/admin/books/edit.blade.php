@@ -121,6 +121,21 @@
             @enderror
         </div>
         <div class="col-3">
+            <label for="genre_id" class="form-label">Genere</label>
+            <select name="genre_id" id="genre_id" class="form-select @error('genre_id') is-invalid @enderror">
+            <option value="">Non categorizzato</option>
+            @foreach ($genres as $genre)
+                <option value="{{ $genre->id }}" @if (old('genre_id') ?? $book->genre_id == $genre->id) selected @endif>{{ $genre->label }}
+                </option>
+            @endforeach
+            </select>
+            @error('genre_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+        <div class="col-12">
             <label for="status" class="form-label">status (1=bad 5=good)</label>
             <select name="status" id="status" class="form-select @error('status') is-invalid @enderror" value="{{ old('status') }}">
                 <option value="1" selected>1</option>

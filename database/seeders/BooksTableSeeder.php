@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,9 +18,18 @@ class BooksTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 20; $i++) {
-            $book = new Book();
+        $genres = Genre::all()->pluck('id');
+        /* * randomizzare la presenza di genere "Null" */
+        $genres[] = null;
+        /* *------------------------------------------ */
 
+        for ($i = 0; $i < 20; $i++) {
+            $genre_id = $faker->randomElement($genres);
+            
+            $book = new Book();
+            // Genres
+            $book->genre_id = $genre_id;
+            // Genres END
             $book->title = $faker->words(3, true);
             $book->author = $faker->words(2, true);
             $book->isbn = $faker->isbn10();
