@@ -9,6 +9,7 @@
                 <ul>
                     <li>Title: {{ $book->title }}</li>
                     <li>Author: {{ $book->author }}</li>
+                    <li>Genre: {{ $book->genre ? $book->genre->label : 'Nessun Genere' }}</li>
                     <li>{{ $book->lent ? 'Not Available' : 'Available' }}</li>
                 </ul>
             </div>
