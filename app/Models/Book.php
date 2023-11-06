@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = ['title',
+  protected $fillable = [
+    'title',
     'author',
     'isbn',
     'editor',
@@ -22,10 +23,11 @@ class Book extends Model
     'quantity',
     'status',
     'genre_id',
-    ];
+  ];
 
-    public function genre() {
-        return $this->belongsTo(Genre::class);
-      }
+  public function genre()
+  {
+    return $this->belongsTo(Genre::class);
+  }
 
 }
