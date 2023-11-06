@@ -30,4 +30,9 @@ class Book extends Model
     return $this->belongsTo(Genre::class);
   }
 
+  public function types()
+  {
+    return $this->belongsToMany(Type::class);
+  }
+
 }
