@@ -38,7 +38,7 @@
                     </strong>
                     @foreach ($book->types as $type)
                         <div class="badge" style="background-color:{{ $type->color }}">
-                            {{ $type ? $type->label : 'Nessun Genere' }}
+                            {{ $type ? $type->label : 'Nessun Tipo' }}
                         </div>
                     @endforeach
                 </div>
