@@ -35,11 +35,13 @@ class BookController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     ** @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $book = Book::select("id", "title", "author")->where('id', $id)->first();
+
+        return response()->json($book);
     }
 
     /**
